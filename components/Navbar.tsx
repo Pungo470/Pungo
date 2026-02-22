@@ -14,7 +14,8 @@ export default function Navbar() {
   const [profile, setProfile] = useState<any>(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session: currentSession } }: { data: { session: any } }) => {
+    supabase.auth.getSession().then(({ data }: any) => {
+      const currentSession: any = data.session
       setSession(currentSession)
       if (currentSession?.user) {
         fetchProfile(currentSession.user.id)
